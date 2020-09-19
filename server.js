@@ -20,8 +20,9 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+app.get("/api/whoami", function (req, res,next) {
+  res.json({"ipaddress":req.ip,"software":req.header('User-Agent'),"language":req.header('Accept-Language')});
+  next();
 });
 
 
@@ -30,3 +31,6 @@ app.get("/api/hello", function (req, res) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+
+
